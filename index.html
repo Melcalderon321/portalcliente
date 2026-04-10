@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Clientes - Tehuentec Dark</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+    <div class="bg-glow" style="top: -5%; left: -10%; background: var(--accent-green); opacity: 0.07;"></div>
+    <div class="bg-glow" style="bottom: 10%; right: -10%; background: var(--accent-green); opacity: 0.06;"></div>
+    <div class="bg-glow" style="top: 40%; right: -20%; background: var(--accent-orange); opacity: 0.02;"></div>
+    <div class="bg-glow" style="bottom: 20%; left: -15%; background: var(--accent-green); opacity: 0.06;"></div>
+    <div class="bg-glow" style="bottom: -10%; right: -10%; background: var(--accent-orange); opacity: 0.03;"></div>
+
+    <div class="viewport-switcher">
+        <button class="view-btn" id="view-mob" onclick="switchView('mobile')" title="Vista Mobile">
+            <ion-icon name="smartphone-outline"></ion-icon>
+        </button>
+        <button class="view-btn" id="view-desk" onclick="switchView('desktop')" title="Vista Desktop (1440px)">
+            <ion-icon name="desktop-outline"></ion-icon>
+        </button>
+    </div>
+
+    <header class="header">
+        <img src="Marca.svg" alt="Tehuentec Logo" class="logo">
+        <p style="background: linear-gradient(135deg, #FFFFFF 0%, #B0B0B0 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Portal Cliente</p>
+    </header>
+
+
+
+    <main class="container">
+        
+        <!-- Section: Asistencia Disponible -->
+        <section class="card">
+            <span class="section-tag">Accesos Rápidos</span>
+            <h2 class="section-title">Asistencia disponible</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <a href="https://admin.tehuentec.com" target="_blank" class="btn btn-green">
+                    <span style="font-family: inherit;">Servicios Contratados</span>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </a>
+                
+                <button class="btn btn-outline" onclick="openModal()">
+                    <span>Iniciar Solicitud</span>
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                </button>
+
+                <button class="btn btn-outline" id="hours-btn" onclick="toggleHours()">
+                    <span>Horarios de Atención</span>
+                    <ion-icon name="time-outline"></ion-icon>
+                </button>
+                
+                <div id="hours-details" class="expansion-box">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div class="faq-icon-box" style="width: 50px; height: 50px;">
+                            <ion-icon name="earth-outline" style="font-size: 1.5rem;"></ion-icon>
+                        </div>
+                        <div>
+                            <p style="font-weight: 700; font-size: 1rem; color: #FFF;">Lunes a Viernes</p>
+                            <p style="color: var(--accent-green); font-size: 0.85rem;">8:00 AM - 6:00 PM (AR)</p>
+                        </div>
+                    </div>
+                    
+                    <h4 style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;">Zonas Horarias Equiv.</h4>
+                    <div class="timezone-list" id="timezone-list">
+                        <!-- Dynamic Content -->
+                    </div>
+                </div>
+
+                <a href="recursos.html" class="btn btn-outline" id="recursos-btn">
+                    <span>Recursos Útiles</span>
+                    <ion-icon name="library-outline"></ion-icon>
+                </a>
+            </div>
+        </section>
+
+        <!-- Dynamic Ticker Promotion -->
+        <div class="card" style="background: var(--brand-gradient); border: none; overflow: hidden; position: relative; padding: 30px;">
+            <div style="position: relative; z-index: 1;">
+                <h3 style="color: white; font-size: 1.4rem; line-height: 1.2; margin-bottom: 10px;">Potencia los resultados de tu negocio</h3>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Sigamos creciendo juntos, generando nuevas oportunidades</p>
+            </div>
+            <ion-icon name="flash" style="position: absolute; right: -20px; bottom: -20px; font-size: 150px; color: rgba(255,255,255,0.1);"></ion-icon>
+        </div>
+
+        <!-- Section: FAQ -->
+        <section class="card">
+            <span class="section-tag">Centro de ayuda</span>
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            
+            <div style="position: relative; margin-bottom: 30px;">
+                <input type="text" id="faq-search" class="search-input" placeholder="¿En qué podemos ayudarte?" onkeyup="filterFAQ()" style="padding-left: 50px;">
+                <ion-icon name="search-outline" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem;"></ion-icon>
+            </div>
+
+            <div id="faq-list">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- Section: Administración -->
+        <section class="card">
+            <span class="section-tag">Gestión</span>
+            <h2 class="section-title">Administración & Facturas</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 25px;">
+                Acceso centralizado para reportes y gestión administrativa de Tehuentec.
+            </p>
+
+            <a href="https://admin.tehuentec.com" target="_blank" class="resource-item" style="border-color: rgba(13, 204, 103, 0.2); background: rgba(13, 204, 103, 0.03);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <ion-icon name="lock-open-outline" style="color: var(--accent-green);"></ion-icon>
+                    <span>Ir al Panel de Administración</span>
+                </div>
+                <ion-icon name="open-outline" style="font-size: 1rem; color: var(--accent-green);"></ion-icon>
+            </a>
+
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                <p style="font-size: 0.8rem; color: var(--text-muted);">¿No tenés acceso habilitado?</p>
+                <button class="btn-outline" style="font-size: 0.75rem; padding: 8px 15px; border-radius: 10px;" onclick="openModal()">Solicitar alta</button>
+            </div>
+        </section>
+
+        <!-- Section: Call (Hideable) -->
+        <div id="call-card" class="card" style="background: rgba(255, 87, 51, 0.05); border-color: rgba(255, 87, 51, 0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                <div>
+                    <h3 style="color: var(--accent-orange); font-size: 1rem; margin-bottom: 5px;">¿Querés una llamada?</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Agendá con nuestro equipo ahora.</p>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="window.location.href='https://calendly.com/tehuentec'">
+                <span>Ver Disponibilidad</span>
+                <ion-icon name="calendar-number-outline"></ion-icon>
+            </button>
+        </div>
+
+        <div class="ticker-wrap" style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="ticker">
+                <span>DISEÑO WEB</span> ✶ <span>ADS</span> ✶ <span>ESTRATEGIA DIGITAL</span> ✶ <span>REDES SOCIALES</span> ✶ <span>DISEÑO WEB</span> ✶ <span>ADS</span> ✶ <span>ESTRATEGIA DIGITAL</span> ✶ <span>REDES SOCIALES</span>
+            </div>
+        </div>
+
+        <!-- Section: Closing / Partner -->
+        <section class="pills-container animate-fade" style="padding: 40px 0 0 0; text-align: center;">
+            <h2 class="pills-title" style="margin-bottom: 25px;">Tu Partner Estratégico</h2>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; opacity: 0.9;">
+                <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+                <img src="https://flagcdn.com/w40/us.png" alt="USA" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+                <img src="https://flagcdn.com/w40/co.png" alt="Colombia" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+                <img src="https://flagcdn.com/w40/es.png" alt="España" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+                <img src="https://flagcdn.com/w40/do.png" alt="Rep. Dominicana" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+                <img src="https://flagcdn.com/w40/pe.png" alt="Perú" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+                <img src="https://flagcdn.com/w40/de.png" alt="Alemania" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 25px 20px; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1px;">
+            <img src="Marca.svg" alt="Tehuentec" style="filter: grayscale(1) invert(1); opacity: 0.3; width: 100px; margin-bottom: 10px;"><br>
+            Diseño web en Argentina <a href="https://tehuentec.com" target="_blank" style="color: inherit; text-decoration: none; font-weight: 700;">tehuentec.com</a>
+        </footer>
+
+    <!-- Modal Solicitud -->
+    <div id="modal-solicitud" class="modal-overlay" onclick="closeModalOnOutsideClick(event)">
+        <div class="card modal-card">
+            <div class="close-modal" onclick="closeModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+            
+            <span class="section-tag">Centro de Solicitudes</span>
+            <h2 class="section-title">Nueva Gestión</h2>
+
+            <div class="request-grid">
+                <div class="option-btn" onclick="selectOption(this)">Cambios web</div>
+                <div class="option-btn" onclick="selectOption(this)">Campañas</div>
+                <div class="option-btn" onclick="selectOption(this)">Estrategia</div>
+                <div class="option-btn" onclick="selectOption(this)">Redes sociales</div>
+                <div class="option-btn" onclick="selectOption(this)">Nuevo producto</div>
+                <div class="option-btn" onclick="selectOption(this)">Reclamos</div>
+            </div>
+
+            <form id="request-form" onsubmit="handleForm(event)">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" placeholder="TU NOMBRE" class="search-input" required>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="email" placeholder="EMAIL DE CONTACTO" class="search-input" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <textarea placeholder="DETALLE DE TU SOLICITUD..." class="search-input" style="min-height: 120px; resize: none;" required></textarea>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label class="file-upload-label">
+                        <ion-icon name="cloud-upload-outline" style="font-size: 1.2rem;"></ion-icon>
+                        <span id="file-name-display">Adjuntar documento (Opcional)</span>
+                        <input type="file" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                    </label>
+                </div>
+                
+                <div style="background: rgba(255, 141, 51, 0.1); border: 1px solid rgba(255, 141, 51, 0.2); padding: 15px; border-radius: 12px; margin-bottom: 25px; font-size: 0.8rem; color: #FF8D33;">
+                    <ion-icon name="mail-unread-outline" style="vertical-align: middle; margin-right: 5px; font-size: 1rem;"></ion-icon> 
+                    El email es el principal canal para respuestas urgentes.
+                </div>
+
+                <button type="submit" class="btn btn-green">
+                    <span>Enviar Solicitud</span>
+                    <ion-icon name="paper-plane-outline"></ion-icon>
+                </button>
+            </form>
+
+            <div id="success-message" style="display: none; text-align: center; padding: 40px 20px;">
+                <div class="faq-icon-box" style="width: 80px; height: 80px; margin: 0 auto 20px;">
+                    <ion-icon name="checkmark-done-outline" style="font-size: 2.5rem;"></ion-icon>
+                </div>
+                <h3 style="margin-bottom: 10px;">¡Solicitud Recibida!</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">“Gracias por tu mensaje. Será derivado al sector correspondiente para una pronta respuesta. Tu satisfacción es nuestra prioridad.”</p>
+                <button class="btn btn-outline" style="margin-top: 25px;" onclick="closeModal()">Cerrar Ventana</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

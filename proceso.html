@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso Web - Tehuentec</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+    <div class="viewport-switcher">
+        <button class="view-btn" id="view-mob" onclick="switchView('mobile')" title="Vista Mobile">
+            <ion-icon name="smartphone-outline"></ion-icon>
+        </button>
+        <button class="view-btn" id="view-desk" onclick="switchView('desktop')" title="Vista Desktop (1440px)">
+            <ion-icon name="desktop-outline"></ion-icon>
+        </button>
+    </div>
+
+    <div class="bg-glow" style="top: 0%; right: 0%; background: var(--accent-green); opacity: 0.1;"></div>
+    <div class="bg-glow" style="bottom: 0%; left: 0%; background: var(--accent-orange); opacity: 0.05;"></div>
+
+    <header class="header">
+        <img src="Marca.svg" alt="Tehuentec Logo" class="logo" style="width: 140px;">
+        <p style="background: linear-gradient(135deg, #FFFFFF 0%, #B0B0B0 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Portal Cliente</p>
+    </header>
+
+    <main class="container animate-fade proceso-page">
+        <a href="recursos.html" class="btn-back">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Volver a Recursos
+        </a>
+
+        <div class="card">
+            <span class="section-tag">Metodología Tehuentec</span>
+            <h2 class="section-title">Nuestra Ruta al Éxito</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 35px;">
+                El proceso de tu web puesta online sigue un proceso estudiado para darte el mejor producto con la calidad que tu empresa se merece. Estos son los pasos fundamentales de nuestra metodología:
+            </p>
+
+            <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Aprobación de diseño home por parte del cliente</h3>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Diseño de versión mobile y secciones</h3>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Aprobación de diseño mobile y secciones por parte del cliente</h3>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Etapa de programación</h3>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>¡Puesta de web online!</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: rgba(13, 204, 103, 0.05); border: 1px dashed rgba(13, 204, 103, 0.2); padding: 25px; border-radius: 16px; margin-top: 30px; text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Recibirás asesoramiento constante en cada una de estas etapas.</p>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 25px 20px; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1px;">
+        <img src="Marca.svg" alt="Tehuentec" style="filter: grayscale(1) invert(1); opacity: 0.3; width: 100px; margin-bottom: 10px;"><br>
+        Diseño web en Argentina <a href="https://tehuentec.com" target="_blank" style="color: inherit; text-decoration: none; font-weight: 700;">tehuentec.com</a>
+    </footer>
+
+    <!-- App JS -->
+    <script src="app.js"></script>
+</body>
+</html>
