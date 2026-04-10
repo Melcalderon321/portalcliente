@@ -37,19 +37,9 @@ const faqData = [
     }
 ];
 
-const timezones = [
-    { country: 'Colombia', offset: -2 },
-    { country: 'Miami (EE.UU.)', offset: -2 },
-    { country: 'Houston (EE.UU.)', offset: -3 },
-    { country: 'Rep. Dominicana', offset: -1 },
-    { country: 'Perú', offset: -2 },
-    { country: 'España', offset: 4 },
-    { country: 'Alemania', offset: 4 }
-];
 
 // Initialize
 function initApp() {
-    updateTimezones();
     renderFAQ(faqData);
     initRoadmapAnimation();
 }
@@ -139,27 +129,7 @@ function hideCallCard() {
     document.getElementById('call-card').style.display = 'none';
 }
 
-// Timezone Logic
-function updateTimezones() {
-    const list = document.getElementById('timezone-list');
-    if(!list) return;
-    
-    const arHoursStart = 8;
-    const arHoursEnd = 18;
-
-    timezones.forEach(tz => {
-        const start = (arHoursStart + tz.offset + 24) % 24;
-        const end = (arHoursEnd + tz.offset + 24) % 24;
-        
-        const item = document.createElement('div');
-        item.className = 'timezone-item';
-        item.innerHTML = `
-            <span>${tz.country}</span>
-            <span style="font-weight: 700; color: #FFF;">${start}:00 - ${end}:00 hs</span>
-        `;
-        list.appendChild(item);
-    });
-}
+// Timezone Logic (Removed dynamic list)
 
 function toggleHours() {
     const details = document.getElementById('hours-details');
@@ -205,15 +175,35 @@ function closeRecursos() {
     if (btn) btn.classList.remove('active');
 }
 
-// Form Logic
-let selectedOption = null;
-
-function selectOption(btn) {
-    const btns = document.querySelectorAll('.option-btn');
-    btns.forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedOption = btn.innerText;
+// Dropdown Logic
+function toggleDropdown() {
+    const list = document.getElementById('dropdown-options');
+    const header = document.querySelector('.dropdown-header');
+    list.classList.toggle('active');
+    header.classList.toggle('active');
 }
+
+function selectDropdownOption(val) {
+    selectedOption = val;
+    document.getElementById('selected-label').innerText = val;
+    document.getElementById('selected-label').style.color = '#FFF';
+    
+    // Close dropdown
+    const list = document.getElementById('dropdown-options');
+    const header = document.querySelector('.dropdown-header');
+    list.classList.remove('active');
+    header.classList.remove('active');
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.custom-dropdown')) {
+        const list = document.getElementById('dropdown-options');
+        const header = document.querySelector('.dropdown-header');
+        if (list) list.classList.remove('active');
+        if (header) header.classList.remove('active');
+    }
+});
 
 function handleForm(e) {
     e.preventDefault();
@@ -242,8 +232,10 @@ function resetForm() {
     document.getElementById('request-form').style.display = 'block';
     document.getElementById('success-message').style.display = 'none';
     document.getElementById('file-name-display').innerText = 'Adjuntar documento (Opcional)';
-    const btns = document.querySelectorAll('.option-btn');
-    btns.forEach(b => b.classList.remove('selected'));
+    
+    // Reset Dropdown
+    document.getElementById('selected-label').innerText = 'Motivo de Gestión';
+    document.getElementById('selected-label').style.color = 'var(--text-secondary)';
     selectedOption = null;
 }
 
@@ -302,14 +294,6 @@ function toggleFAQ(id) {
     }
 }
 
-function filterFAQ() {
-    const query = document.getElementById('faq-search').value.toLowerCase();
-    const filtered = faqData.filter(f => 
-        f.question.toLowerCase().includes(query) || 
-        f.long.toLowerCase().includes(query)
-    );
-    renderFAQ(filtered);
-}
 // Roadmap Animation
 function initRoadmapAnimation() {
     const steps = document.querySelectorAll('.roadmap-step');

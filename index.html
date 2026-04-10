@@ -11,6 +11,11 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
+    <div class="bg-glow-container">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+        <div class="bg-glow glow-3"></div>
+    </div>
 
 
     <div class="viewport-switcher">
@@ -23,9 +28,15 @@
     </div>
 
     <header class="header">
-        <img src="Marca.svg" alt="Tehuentec Logo" class="logo">
-        <p style="background: linear-gradient(135deg, #FFFFFF 0%, #B0B0B0 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Portal Cliente</p>
+        <img src="top-logo.png" alt="Tehuentec Logo" class="logo">
     </header>
+
+    <div class="user-profile">
+        <div class="user-info">
+            <h1>¡Hola! Bienvenido.</h1>
+            <p>Desde aquí podés gestionar tus servicios, iniciar nuevas solicitudes de soporte o cambios, y acceder a recursos exclusivos de Tehuentec de forma centralizada.</p>
+        </div>
+    </div>
 
 
 
@@ -53,19 +64,14 @@
                 </button>
                 
                 <div id="hours-details" class="expansion-box">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
                         <div class="faq-icon-box" style="width: 50px; height: 50px;">
-                            <ion-icon name="earth-outline" style="font-size: 1.5rem;"></ion-icon>
+                            <ion-icon name="time-outline" style="font-size: 1.5rem;"></ion-icon>
                         </div>
                         <div>
-                            <p style="font-weight: 700; font-size: 1rem; color: #FFF;">Lunes a Viernes</p>
-                            <p style="color: var(--accent-green); font-size: 0.85rem;">8:00 AM - 6:00 PM (AR)</p>
+                            <p style="font-weight: 700; font-size: 1rem; color: #FFF;">Lun a Vie - 9:00 AM / 6:00 PM</p>
+                            <p style="color: var(--accent-green); font-size: 0.85rem;">Zona Horaria (GMT-3)</p>
                         </div>
-                    </div>
-                    
-                    <h4 style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;">Zonas Horarias Equiv.</h4>
-                    <div class="timezone-list" id="timezone-list">
-                        <!-- Dynamic Content -->
                     </div>
                 </div>
 
@@ -90,10 +96,7 @@
             <span class="section-tag">Centro de ayuda</span>
             <h2 class="section-title">Preguntas Frecuentes</h2>
             
-            <div style="position: relative; margin-bottom: 30px;">
-                <input type="text" id="faq-search" class="search-input" placeholder="¿En qué podemos ayudarte?" onkeyup="filterFAQ()" style="padding-left: 50px;">
-                <ion-icon name="search-outline" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem;"></ion-icon>
-            </div>
+            
 
             <div id="faq-list">
                 <!-- Dynamic Content -->
@@ -113,7 +116,7 @@
                     <ion-icon name="lock-open-outline" style="color: var(--accent-green);"></ion-icon>
                     <span>Ir al Panel de Administración</span>
                 </div>
-                <ion-icon name="open-outline" style="font-size: 1rem; color: var(--accent-green);"></ion-icon>
+                <ion-icon name="open-outline" style="color: var(--accent-green);"></ion-icon>
             </a>
 
             <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
@@ -126,8 +129,8 @@
         <div id="call-card" class="card" style="background: rgba(255, 87, 51, 0.05); border-color: rgba(255, 87, 51, 0.2);">
             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
                 <div>
-                    <h3 style="color: var(--accent-orange); font-size: 1rem; margin-bottom: 5px;">¿Querés una llamada?</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Agendá con nuestro equipo ahora.</p>
+                    <h3 style="color: var(--accent-orange); font-size: 1rem; margin-bottom: 5px;">¿Necesitás contactarnos?</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Agendá una breve reunión con nuestro equipo de asesores.</p>
                 </div>
             </div>
             <button class="btn btn-primary" onclick="window.location.href='https://calendly.com/tehuentec'">
@@ -136,15 +139,10 @@
             </button>
         </div>
 
-        <div class="ticker-wrap" style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
-            <div class="ticker">
-                <span>DISEÑO WEB</span> ✶ <span>ADS</span> ✶ <span>ESTRATEGIA DIGITAL</span> ✶ <span>REDES SOCIALES</span> ✶ <span>DISEÑO WEB</span> ✶ <span>ADS</span> ✶ <span>ESTRATEGIA DIGITAL</span> ✶ <span>REDES SOCIALES</span>
-            </div>
-        </div>
 
         <!-- Section: Closing / Partner -->
         <section class="pills-container animate-fade" style="padding: 40px 0 0 0; text-align: center;">
-            <h2 class="pills-title" style="margin-bottom: 25px;">Tu Partner Estratégico</h2>
+            <h2 class="pills-title" style="margin-bottom: 25px;">Marketing estratégico para resultados reales</h2>
             <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; opacity: 0.9;">
                 <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
                 <img src="https://flagcdn.com/w40/us.png" alt="USA" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
@@ -155,10 +153,16 @@
                 <img src="https://flagcdn.com/w40/de.png" alt="Alemania" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
             </div>
         </section>
+    </main>
 
-        <footer style="text-align: center; padding: 25px 20px; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1px;">
-            Diseño web en Argentina <a href="https://tehuentec.com" target="_blank" style="color: inherit; text-decoration: none; font-weight: 700;">tehuentec.com</a>
-        </footer>
+    <footer class="footer-branded">
+        <div class="footer-content">
+            <img src="footer-logo.svg" alt="Tehuentec" class="footer-logo">
+            <div class="footer-info">
+                Diseño web en Argentina <a href="https://tehuentec.com" target="_blank">tehuentec.com</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Modal Solicitud -->
     <div id="modal-solicitud" class="modal-overlay" onclick="closeModalOnOutsideClick(event)">
@@ -169,13 +173,19 @@
             
             <span class="section-tag">Nueva Gestión</span>
 
-            <div class="request-grid">
-                <div class="option-btn" onclick="selectOption(this)">Cambios web</div>
-                <div class="option-btn" onclick="selectOption(this)">Campañas</div>
-                <div class="option-btn" onclick="selectOption(this)">Estrategia</div>
-                <div class="option-btn" onclick="selectOption(this)">Redes sociales</div>
-                <div class="option-btn" onclick="selectOption(this)">Nuevo producto</div>
-                <div class="option-btn" onclick="selectOption(this)">Reclamos</div>
+            <div class="custom-dropdown" id="request-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown()">
+                    <span id="selected-label">Motivo de Gestión</span>
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </div>
+                <div class="dropdown-options" id="dropdown-options">
+                    <div class="dropdown-item" onclick="selectDropdownOption('Cambios web')">Cambios web</div>
+                    <div class="dropdown-item" onclick="selectDropdownOption('Campañas')">Campañas</div>
+                    <div class="dropdown-item" onclick="selectDropdownOption('Estrategia')">Estrategia</div>
+                    <div class="dropdown-item" onclick="selectDropdownOption('Redes sociales')">Redes sociales</div>
+                    <div class="dropdown-item" onclick="selectDropdownOption('Nuevo producto')">Nuevo producto</div>
+                    <div class="dropdown-item" onclick="selectDropdownOption('Reclamos')">Reclamos</div>
+                </div>
             </div>
 
             <form id="request-form" onsubmit="handleForm(event)">
@@ -185,7 +195,7 @@
                 <div style="margin-bottom: 15px;">
                     <input type="email" placeholder="EMAIL DE CONTACTO" class="search-input" required>
                 </div>
-                <div style="margin-bottom: 20px;">
+                <div style="margin-bottom: 15px;">
                     <textarea placeholder="DETALLE DE TU SOLICITUD..." class="search-input" style="min-height: 120px; resize: none;" required></textarea>
                 </div>
                 
@@ -196,10 +206,9 @@
                         <input type="file" id="file-upload" style="display: none;" onchange="updateFileName(this)">
                     </label>
                 </div>
-                
-                <div style="background: rgba(255, 141, 51, 0.1); border: 1px solid rgba(255, 141, 51, 0.2); padding: 15px; border-radius: 12px; margin-bottom: 25px; font-size: 0.8rem; color: #FF8D33;">
-                    <ion-icon name="mail-unread-outline" style="vertical-align: middle; margin-right: 5px; font-size: 1rem;"></ion-icon> 
-                    El email es el principal canal para respuestas urgentes.
+                <div class="disclaimer-box">
+                    <ion-icon name="alert-circle" class="disclaimer-icon"></ion-icon> 
+                    <span class="disclaimer-text">El email es el principal canal para respuestas urgentes.</span>
                 </div>
 
                 <button type="submit" class="btn btn-green" style="justify-content: center;">
