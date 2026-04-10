@@ -268,17 +268,18 @@ function renderFAQ(items) {
         return;
     }
 
-    items.forEach(faq => {
+    items.forEach((faq, index) => {
+        const isFirst = index === 0;
         const item = document.createElement('div');
         item.style.marginBottom = '15px';
         item.innerHTML = `
             <div class="faq-header" onclick="toggleFAQ(${faq.id})">
                 <h4>${faq.question}</h4>
                 <div class="faq-icon-box">
-                    <ion-icon name="chevron-down-outline" id="faq-icon-${faq.id}"></ion-icon>
+                    <ion-icon name="chevron-down-outline" id="faq-icon-${faq.id}" style="transform: ${isFirst ? 'rotate(180deg)' : 'rotate(0deg)'};"></ion-icon>
                 </div>
             </div>
-            <div id="faq-content-${faq.id}" style="display: none; padding: 15px 0 5px;">
+            <div id="faq-content-${faq.id}" style="display: ${isFirst ? 'block' : 'none'}; padding: 15px 0 5px;">
                 <p style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700; margin-bottom: 8px;">${faq.short}</p>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">${faq.long}</p>
             </div>
