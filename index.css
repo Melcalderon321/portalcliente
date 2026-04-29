@@ -996,49 +996,6 @@ body.view-desktop .footer-branded {
     box-shadow: 0 15px 35px rgba(255, 255, 255, 0.5);
 }
 
-/* FAB Dialogue Bubble */
-.fab-dialogue {
-    position: absolute;
-    right: calc(100% + 15px);
-    top: 50%;
-    transform: translateY(-50%);
-    background: #FFFFFF;
-    color: #071119;
-    padding: 8px 16px;
-    border-radius: 14px 14px 0 14px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    white-space: nowrap;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    pointer-events: none;
-    animation: gentle-bounce 3s infinite ease-in-out;
-}
-
-.fab-dialogue::after {
-    content: '';
-    position: absolute;
-    right: -6px;
-    bottom: 0;
-    border-width: 6px 0 0 6px;
-    border-style: solid;
-    border-color: transparent transparent transparent #FFFFFF;
-}
-
-@keyframes gentle-bounce {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-50%) translateX(-6px); }
-}
-
-/* Invert dialogue colors when FAB is on footer */
-.fab-rating.inverted .fab-dialogue {
-    background: var(--accent-green);
-    color: #071119;
-}
-
-.fab-rating.inverted .fab-dialogue::after {
-    border-color: transparent transparent transparent var(--accent-green);
-}
-
 @media (max-width: 600px) {
     .fab-rating {
         bottom: 20px;
@@ -1089,7 +1046,7 @@ body.view-desktop .footer-branded {
     transform: translate(-50%, -50%);
     width: 80vw;
     max-width: 800px;
-    opacity: 0.02;
+    opacity: 0.01;
     z-index: 0;
     pointer-events: none;
 }
