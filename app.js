@@ -2,38 +2,38 @@
 const faqData = [
     {
         id: 1,
-        category: 'campañas',
-        question: '¿Cómo puedo ver el rendimiento de mis anuncios?',
-        short: 'Consulta en tiempo real vía Admin Tehuentec.',
-        long: 'Para ver el rendimiento detallado, ingresa a admin.tehuentec.com. En la sección "Reportes" encontrarás gráficos de Google Ads y Meta Ads con métricas clave como CTR, CPC y Conversiones.'
+        category: 'campaÃ±as',
+        question: 'Â¿CÃ³mo puedo ver el rendimiento de mis anuncios?',
+        short: 'Consulta en tiempo real vÃ­a Admin Tehuentec.',
+        long: 'Para ver el rendimiento detallado, ingresa a admin.tehuentec.com. En la secciÃ³n "Reportes" encontrarÃ¡s grÃ¡ficos de Google Ads y Meta Ads con mÃ©tricas clave como CTR, CPC y Conversiones.'
     },
     {
         id: 2,
         category: 'facturacion',
-        question: '¿Dónde descargo mis facturas?',
-        short: 'En el panel central de Administración.',
-        long: 'Todas tus facturas están centralizadas en el panel de Administración. Si no tienes acceso habilitado, puedes solicitar el alta a través del formulario de este mismo portal.'
+        question: 'Â¿DÃ³nde descargo mis facturas?',
+        short: 'En el panel central de AdministraciÃ³n.',
+        long: 'Todas tus facturas estÃ¡n centralizadas en el panel de AdministraciÃ³n. Si no tienes acceso habilitado, puedes solicitar el alta a travÃ©s del formulario de este mismo portal.'
     },
     {
         id: 3,
-        category: 'diseño',
-        question: '¿Cómo solicito un cambio en la web?',
-        short: 'Inicia una gestión de "Web Update".',
-        long: 'Selecciona "Web Update" en el formulario de inicio. Describe los cambios y nuestro equipo técnico iniciará la gestión en un plazo de 24 a 48hs hábiles.'
+        category: 'diseÃ±o',
+        question: 'Â¿CÃ³mo solicito un cambio en la web?',
+        short: 'Inicia una gestiÃ³n de "Web Update".',
+        long: 'Selecciona "Web Update" en el formulario de inicio. Describe los cambios y nuestro equipo tÃ©cnico iniciarÃ¡ la gestiÃ³n en un plazo de 24 a 48hs hÃ¡biles.'
     },
     {
         id: 4,
         category: 'estrategia',
-        question: '¿Qué incluye el asesoramiento estratégico?',
-        short: 'Optimización de ROI y análisis de mercado.',
-        long: 'Nuestro asesoramiento incluye revisiones mensuales de KPIs, optimización de embudos de venta y ajustes estratégicos para maximizar el retorno de tu inversión publicitaria.'
+        question: 'Â¿QuÃ© incluye el asesoramiento estratÃ©gico?',
+        short: 'OptimizaciÃ³n de ROI y anÃ¡lisis de mercado.',
+        long: 'Nuestro asesoramiento incluye revisiones mensuales de KPIs, optimizaciÃ³n de embudos de venta y ajustes estratÃ©gicos para maximizar el retorno de tu inversiÃ³n publicitaria.'
     },
     {
         id: 5,
-        category: 'campañas',
-        question: '¿Cuánto tardan en activarse los anuncios?',
-        short: 'Aproximadamente 48 horas hábiles.',
-        long: 'Una vez aprobada la pieza creativa y el presupuesto, las plataformas (Google/Meta) suelen tardar entre 24 y 48 horas en completar el proceso de revisión y activación.'
+        category: 'campaÃ±as',
+        question: 'Â¿CuÃ¡nto tardan en activarse los anuncios?',
+        short: 'Aproximadamente 48 horas hÃ¡biles.',
+        long: 'Una vez aprobada la pieza creativa y el presupuesto, las plataformas (Google/Meta) suelen tardar entre 24 y 48 horas en completar el proceso de revisiÃ³n y activaciÃ³n.'
     }
 ];
 
@@ -138,7 +138,24 @@ function toggleHours() {
     if (!details.classList.contains('active')) {
         details.classList.add('active');
         btn.classList.add('active');
-        // Ensure resources is closed
+        // Ensure others are closed
+        closeFacturacion();
+        closeRecursos();
+    } else {
+        details.classList.remove('active');
+        btn.classList.remove('active');
+    }
+}
+
+function toggleFacturacion() {
+    const details = document.getElementById('facturacion-details');
+    const btn = document.getElementById('facturacion-btn');
+    
+    if (!details.classList.contains('active')) {
+        details.classList.add('active');
+        btn.classList.add('active');
+        // Ensure others are closed
+        closeHours();
         closeRecursos();
     } else {
         details.classList.remove('active');
@@ -165,6 +182,13 @@ function closeHours() {
     const hours = document.getElementById('hours-details');
     const btn = document.getElementById('hours-btn');
     if (hours) hours.classList.remove('active');
+    if (btn) btn.classList.remove('active');
+}
+
+function closeFacturacion() {
+    const facturacion = document.getElementById('facturacion-details');
+    const btn = document.getElementById('facturacion-btn');
+    if (facturacion) facturacion.classList.remove('active');
     if (btn) btn.classList.remove('active');
 }
 
@@ -208,7 +232,7 @@ document.addEventListener('click', (e) => {
 function handleForm(e) {
     e.preventDefault();
     if (!selectedOption) {
-        alert('Por favor, selecciona un tipo de gestión.');
+        alert('Por favor, selecciona un tipo de gestiÃ³n.');
         return;
     }
     
@@ -216,13 +240,21 @@ function handleForm(e) {
     document.getElementById('success-message').style.display = 'block';
     
     const fileInput = document.getElementById('file-upload');
-    const fileName = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : 'Ninguno';
+    let fileName = 'Ninguno';
+    if (fileInput.files && fileInput.files.length > 0) {
+        if (fileInput.files.length === 1) {
+            fileName = fileInput.files[0].name;
+        } else {
+            fileName = Array.from(fileInput.files).map(f => f.name).join(', ');
+        }
+    }
 
     console.log('Tehuentec Submission:', {
         type: selectedOption,
         user: e.target[0].value,
-        email: e.target[1].value,
-        details: e.target[2].value,
+        empresa: e.target[1].value,
+        email: e.target[2].value,
+        details: e.target[3].value,
         attachment: fileName
     });
 }
@@ -231,21 +263,25 @@ function resetForm() {
     document.getElementById('request-form').reset();
     document.getElementById('request-form').style.display = 'block';
     document.getElementById('success-message').style.display = 'none';
-    document.getElementById('file-name-display').innerText = 'Adjuntar documento (Opcional)';
+    document.getElementById('file-name-display').innerText = 'Adjuntar archivos (Opcional)';
     
     // Reset Dropdown
-    document.getElementById('selected-label').innerText = 'Motivo de Gestión';
+    document.getElementById('selected-label').innerText = 'Motivo de GestiÃ³n';
     document.getElementById('selected-label').style.color = 'var(--text-secondary)';
     selectedOption = null;
 }
 
 function updateFileName(input) {
     const display = document.getElementById('file-name-display');
-    if (input.files && input.files[0]) {
-        display.innerText = input.files[0].name;
+    if (input.files && input.files.length > 0) {
+        if (input.files.length === 1) {
+            display.innerText = input.files[0].name;
+        } else {
+            display.innerText = `${input.files.length} archivos seleccionados`;
+        }
         display.style.color = 'var(--accent-green)';
     } else {
-        display.innerText = 'Adjuntar documento (Opcional)';
+        display.innerText = 'Adjuntar archivos (Opcional)';
         display.style.color = 'var(--text-muted)';
     }
 }
@@ -335,3 +371,131 @@ function initRoadmapAnimation() {
         }
     }, 500);
 }
+
+// Rating Modal Logic
+let currentRating = 0;
+
+function openRatingModal() {
+    const modal = document.getElementById('modal-rating');
+    modal.style.display = 'flex';
+    setTimeout(() => {
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    }, 10);
+}
+
+function closeRatingModal() {
+    const modal = document.getElementById('modal-rating');
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        resetRating();
+    }, 300);
+}
+
+function closeRatingModalOnOutsideClick(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+        closeRatingModal();
+    }
+}
+
+function selectRating(rating) {
+    currentRating = rating;
+    const stars = document.querySelectorAll('#star-rating-container ion-icon');
+    
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.setAttribute('name', 'star');
+            star.classList.add('active');
+        } else {
+            star.setAttribute('name', 'star-outline');
+            star.classList.remove('active');
+        }
+    });
+
+    const commentBox = document.getElementById('rating-comments');
+    const submitBtn = document.getElementById('submit-rating-btn');
+    
+    commentBox.style.display = 'block';
+    submitBtn.style.opacity = '1';
+    submitBtn.style.pointerEvents = 'auto';
+}
+
+function submitRating() {
+    const comment = document.getElementById('rating-comments').value;
+    console.log('Rating Submitted:', { rating: currentRating, comment: comment });
+    
+    document.getElementById('star-rating-container').style.display = 'none';
+    document.getElementById('rating-comments').style.display = 'none';
+    document.getElementById('submit-rating-btn').style.display = 'none';
+    
+    const h3 = document.querySelector('#modal-rating h3');
+    const p = document.querySelector('#modal-rating p');
+    if(h3) h3.style.display = 'none';
+    if(p) p.style.display = 'none';
+
+    document.getElementById('rating-success').style.display = 'block';
+    
+    setTimeout(() => {
+        closeRatingModal();
+    }, 2500);
+}
+
+function resetRating() {
+    currentRating = 0;
+    const stars = document.querySelectorAll('#star-rating-container ion-icon');
+    stars.forEach(star => {
+        star.setAttribute('name', 'star-outline');
+        star.classList.remove('active');
+    });
+    
+    document.getElementById('star-rating-container').style.display = 'flex';
+    document.getElementById('rating-comments').style.display = 'none';
+    document.getElementById('rating-comments').value = '';
+    
+    const h3 = document.querySelector('#modal-rating h3');
+    const p = document.querySelector('#modal-rating p');
+    if(h3) h3.style.display = 'block';
+    if(p) p.style.display = 'block';
+
+    const submitBtn = document.getElementById('submit-rating-btn');
+    submitBtn.style.display = 'flex';
+    submitBtn.style.opacity = '0.5';
+    submitBtn.style.pointerEvents = 'none';
+    
+    document.getElementById('rating-success').style.display = 'none';
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const titleEl = document.getElementById('rotating-title');
+    if(titleEl) {
+        const phrases = ['Marketing estratégico', 'Resultados reales', 'Presencia global', '+20 Años de experiencia'];
+        let currentIndex = 0;
+        setInterval(() => {
+            // Fade out and slide left
+            titleEl.style.transition = 'all 0.5s ease';
+            titleEl.style.opacity = '0';
+            titleEl.style.transform = 'translateX(-30px)';
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % phrases.length;
+                titleEl.innerText = phrases[currentIndex];
+                
+                // Teleport to right side invisibly
+                titleEl.style.transition = 'none';
+                titleEl.style.transform = 'translateX(30px)';
+                
+                // Force reflow
+                void titleEl.offsetWidth;
+                
+                // Fade in and slide to center
+                titleEl.style.transition = 'all 0.5s ease';
+                titleEl.style.opacity = '1';
+                titleEl.style.transform = 'translateX(0)';
+            }, 500);
+        }, 3000);
+    }
+});
+

@@ -61,7 +61,7 @@ input, textarea, select, button {
 
 /* User Intro Section */
 .user-profile {
-    padding: 10px 22px 25px 22px;
+    padding: 10px 22px 5px 22px;
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
@@ -82,6 +82,7 @@ input, textarea, select, button {
     text-transform: none;
     letter-spacing: 0;
     opacity: 0.8;
+    margin-bottom: 0;
 }
 
 /* Header Styles */
@@ -151,6 +152,76 @@ input, textarea, select, button {
     background: rgba(30, 30, 30, 0.7);
     transform: translateY(-4px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* App Grid Layout */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.app-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.app-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    border-color: rgba(13, 204, 103, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.app-icon-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    transition: var(--transition);
+}
+
+.app-card:hover .app-icon-box {
+    transform: scale(1.1);
+    background: rgba(13, 204, 103, 0.1);
+}
+
+.app-card.orange-hover:hover {
+    border-color: rgba(250, 84, 50, 0.3);
+}
+
+.app-card.orange-hover:hover .app-icon-box {
+    background: rgba(250, 84, 50, 0.15) !important;
+}
+
+.app-card span {
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media (min-width: 600px) {
+    .app-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 }
 
 .section-tag {
@@ -839,7 +910,7 @@ body.view-desktop .roadmap-container {
 .footer-branded {
     background: linear-gradient(180deg, #0DCC67 0%, #0AA352 100%);
     padding: 50px 20px; /* Reduced height */
-    margin-top: 80px;
+    margin-top: 10px;
     text-align: center;
     color: white;
     position: relative;
@@ -878,4 +949,84 @@ body.view-desktop .roadmap-container {
 /* Desktop spacing adjustment */
 body.view-desktop .footer-branded {
     padding: 60px 20px; /* Reduced height for desktop too */
+}
+
+/* Floating Action Button (FAB) */
+.fab-rating {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    color: #071119;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(13, 204, 103, 0.3);
+    z-index: 999;
+    transition: var(--transition);
+}
+
+.fab-rating:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(13, 204, 103, 0.5);
+}
+
+@media (max-width: 600px) {
+    .fab-rating {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Star Rating */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.star-rating ion-icon {
+    transition: all 0.2s ease;
+}
+
+.star-rating ion-icon:hover,
+.star-rating ion-icon.active {
+    color: #FFD700;
+    transform: scale(1.1);
+}
+
+/* Rating Logo Animation */
+.rating-logo {
+    animation: floatLogo 3s ease-in-out infinite;
+    filter: drop-shadow(0 5px 15px rgba(13, 204, 103, 0.3));
+}
+
+@keyframes floatLogo {
+    0% { transform: translateY(0px); filter: drop-shadow(0 5px 15px rgba(13, 204, 103, 0.3)); }
+    50% { transform: translateY(-8px); filter: drop-shadow(0 15px 25px rgba(13, 204, 103, 0.6)); }
+    100% { transform: translateY(0px); filter: drop-shadow(0 5px 15px rgba(13, 204, 103, 0.3)); }
+}
+
+/* Brand Watermark */
+.brand-watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    max-width: 800px;
+    opacity: 0.02;
+    z-index: 0;
+    pointer-events: none;
 }

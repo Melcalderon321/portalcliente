@@ -16,6 +16,8 @@
         <div class="bg-glow glow-2"></div>
         <div class="bg-glow glow-3"></div>
     </div>
+    <img src="recurso-1.svg" class="brand-watermark" alt="Tehuentec Brand">
+
 
 
     <div class="viewport-switcher">
@@ -34,7 +36,7 @@
     <div class="user-profile">
         <div class="user-info">
             <h1>¡Hola! Bienvenido.</h1>
-            <p>Desde nuestro Portal del cliente podés gestionar tus servicios, iniciar nuevas solicitudes de soporte o cambios, y acceder a recursos exclusivos de Tehuentec de forma centralizada.</p>
+            <p>Desde nuestro Portal del Cliente podés administrar todos tus servicios en un solo lugar, generar nuevas solicitudes de soporte o cambios, y acceder de forma rápida a recursos exclusivos de Tehuentec.</p>
         </div>
     </div>
 
@@ -42,43 +44,122 @@
 
     <main class="container">
         
-        <!-- Section: Asistencia Disponible -->
-        <section class="card">
-            <span class="section-tag">Accesos Rápidos</span>
-            <h2 class="section-title">Asistencia disponible</h2>
-            
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="https://admin.tehuentec.com" target="_blank" class="btn btn-green">
-                    <span style="font-family: inherit;">Servicios Contratados</span>
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
+        <!-- App Grid Section -->
+        <section style="margin-bottom: 30px;">
+            <div class="app-grid">
+                <!-- 1. Servicios -->
+                <a href="https://admin.tehuentec.com" target="_blank" class="app-card">
+                    <div class="app-icon-box" style="color: var(--accent-green);">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                    </div>
+                    <span>Mis Servicios</span>
                 </a>
-                
-                <button class="btn btn-outline" onclick="openModal()">
-                    <span>Iniciar Solicitud</span>
-                    <ion-icon name="add-circle-outline"></ion-icon>
+
+                <!-- 2. Facturación -->
+                <button class="app-card" id="facturacion-btn" onclick="toggleFacturacion()">
+                    <div class="app-icon-box" style="color: var(--accent-green);">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </div>
+                    <span>Facturación</span>
                 </button>
 
-                <button class="btn btn-outline" id="hours-btn" onclick="toggleHours()">
-                    <span>Horarios de Atención</span>
-                    <ion-icon name="time-outline"></ion-icon>
+                <!-- 3. Nueva Gestión -->
+                <button class="app-card orange-hover" onclick="openModal()">
+                    <div class="app-icon-box" style="color: var(--accent-orange); background: rgba(250, 84, 50, 0.1);">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                    </div>
+                    <span>Nueva Gestión</span>
                 </button>
+
+                <!-- 4. Recursos -->
+                <a href="recursos.html" class="app-card">
+                    <div class="app-icon-box" style="color: #FFF;">
+                        <ion-icon name="library-outline"></ion-icon>
+                    </div>
+                    <span>Recursos Útiles</span>
+                </a>
+
+                <!-- 5. Horarios -->
+                <button class="app-card" id="hours-btn" onclick="toggleHours()">
+                    <div class="app-icon-box" style="color: #FFF;">
+                        <ion-icon name="time-outline"></ion-icon>
+                    </div>
+                    <span>Horarios</span>
+                </button>
+
+                <!-- 6. Centro de Ayuda -->
+                <a href="#faq-section" class="app-card" onclick="document.getElementById('faq-section').scrollIntoView({behavior: 'smooth'})">
+                    <div class="app-icon-box" style="color: #FFF;">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                    </div>
+                    <span>Ayuda (FAQ)</span>
+                </a>
+            </div>
+
+            <!-- Facturación Expansion Box -->
+            <div id="facturacion-details" class="expansion-box" style="margin-top: 15px;">
+                <div style="margin-bottom: 25px; text-align: center;">
+                    <span class="section-tag" style="margin-bottom: 5px;">GESTIÓN</span>
+                    <h3 style="color: #FFF; font-size: 1.2rem; margin-bottom: 10px;">Administración & Facturas</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Acceso centralizado para reportes y gestión administrativa de Tehuentec.</p>
+                </div>
                 
-                <div id="hours-details" class="expansion-box">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div class="faq-icon-box" style="width: 50px; height: 50px;">
-                            <ion-icon name="time-outline" style="font-size: 1.5rem;"></ion-icon>
-                        </div>
-                        <div>
-                            <p style="font-weight: 700; font-size: 1rem; color: #FFF;">Lun a Vie - 9:00 AM / 6:00 PM</p>
-                            <p style="color: var(--accent-green); font-size: 0.85rem;">Zona Horaria (GMT-3)</p>
-                        </div>
+                <a href="https://admin.tehuentec.com" target="_blank" class="resource-item" style="border-color: rgba(13, 204, 103, 0.2); background: rgba(13, 204, 103, 0.03); margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <ion-icon name="lock-open-outline" style="color: var(--accent-green);"></ion-icon>
+                        <span>Ir al Panel de Administración</span>
+                    </div>
+                    <ion-icon name="open-outline" style="color: var(--accent-green);"></ion-icon>
+                </a>
+
+                <div style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">¿No tenés acceso habilitado?</p>
+                    <button class="btn-outline" style="font-size: 0.75rem; padding: 8px 15px; border-radius: 10px;" onclick="openModal()">Solicitar alta</button>
+                </div>
+            </div>
+
+            <!-- Horarios Expansion Box -->
+            <div id="hours-details" class="expansion-box" style="margin-top: 15px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div class="faq-icon-box" style="width: 50px; height: 50px;">
+                        <ion-icon name="time-outline" style="font-size: 1.5rem;"></ion-icon>
+                    </div>
+                    <div>
+                        <p style="font-weight: 700; font-size: 1rem; color: #FFF;">Horarios de Soporte</p>
+                        <p style="color: var(--accent-green); font-size: 0.85rem;">Lunes a Viernes</p>
                     </div>
                 </div>
-
-                <a href="recursos.html" class="btn btn-outline" id="recursos-btn">
-                    <span>Recursos Útiles</span>
-                    <ion-icon name="library-outline"></ion-icon>
-                </a>
+                
+                <div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> Argentina</span>
+                        <span style="color: #FFF;">09:00 - 18:00</span>
+                    </div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/us.png" alt="USA" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> USA (EST)</span>
+                        <span style="color: #FFF;">07:00 - 16:00</span>
+                    </div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/co.png" alt="Colombia" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> Colombia</span>
+                        <span style="color: #FFF;">07:00 - 16:00</span>
+                    </div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/es.png" alt="España" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> España</span>
+                        <span style="color: #FFF;">13:00 - 22:00</span>
+                    </div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/do.png" alt="Rep. Dominicana" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> Rep. Dom.</span>
+                        <span style="color: #FFF;">08:00 - 17:00</span>
+                    </div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/pe.png" alt="Perú" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> Perú</span>
+                        <span style="color: #FFF;">07:00 - 16:00</span>
+                    </div>
+                    <div class="timezone-item">
+                        <span style="display: flex; align-items: center; gap: 8px;"><img src="https://flagcdn.com/w40/de.png" alt="Alemania" style="width: 20px; height: auto; border-radius: 2px; filter: saturate(1.2);"> Alemania</span>
+                        <span style="color: #FFF;">13:00 - 22:00</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -92,7 +173,7 @@
         </div>
 
         <!-- Section: FAQ -->
-        <section class="card">
+        <section class="card" id="faq-section">
             <span class="section-tag">Centro de ayuda</span>
             <h2 class="section-title">Preguntas Frecuentes</h2>
             
@@ -101,29 +182,15 @@
             <div id="faq-list">
                 <!-- Dynamic Content -->
             </div>
-        </section>
 
-        <!-- Section: Administración -->
-        <section class="card">
-            <span class="section-tag">Gestión</span>
-            <h2 class="section-title">Administración & Facturas</h2>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 25px;">
-                Acceso centralizado para reportes y gestión administrativa de Tehuentec.
-            </p>
-
-            <a href="https://admin.tehuentec.com" target="_blank" class="resource-item" style="border-color: rgba(13, 204, 103, 0.2); background: rgba(13, 204, 103, 0.03);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <ion-icon name="lock-open-outline" style="color: var(--accent-green);"></ion-icon>
-                    <span>Ir al Panel de Administración</span>
-                </div>
-                <ion-icon name="open-outline" style="color: var(--accent-green);"></ion-icon>
-            </a>
-
-            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
-                <p style="font-size: 0.8rem; color: var(--text-muted);">¿No tenés acceso habilitado?</p>
-                <button class="btn-outline" style="font-size: 0.75rem; padding: 8px 15px; border-radius: 10px;" onclick="openModal()">Solicitar alta</button>
+            <div style="margin-top: 25px; display: flex; justify-content: center;">
+                <a href="#" style="color: var(--accent-green); text-decoration: none; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 5px;">
+                    Ver más <ion-icon name="arrow-forward-outline"></ion-icon>
+                </a>
             </div>
         </section>
+
+
 
         <!-- Section: Call (Hideable) -->
         <div id="call-card" class="card" style="background: rgba(255, 87, 51, 0.05); border-color: rgba(255, 87, 51, 0.2);">
@@ -141,17 +208,10 @@
 
 
         <!-- Section: Closing / Partner -->
-        <section class="pills-container animate-fade" style="padding: 40px 0 0 0; text-align: center;">
-            <h2 class="pills-title" style="margin-bottom: 25px;">Marketing estratégico para resultados reales. Con presencia global.</h2>
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; opacity: 0.9;">
-                <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-                <img src="https://flagcdn.com/w40/us.png" alt="USA" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-                <img src="https://flagcdn.com/w40/co.png" alt="Colombia" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-                <img src="https://flagcdn.com/w40/es.png" alt="España" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-                <img src="https://flagcdn.com/w40/do.png" alt="Rep. Dominicana" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-                <img src="https://flagcdn.com/w40/pe.png" alt="Perú" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-                <img src="https://flagcdn.com/w40/de.png" alt="Alemania" style="width: 32px; height: auto; border-radius: 4px; filter: saturate(1.2);">
-            </div>
+        <section class="pills-container animate-fade" style="padding: 10px 0 0 0; text-align: center;">
+            <h2 class="pills-title" style="margin-bottom: 0; min-height: 40px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                <span id="rotating-title" style="transition: all 0.5s ease; opacity: 1; transform: translateX(0); display: inline-block; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.5px var(--accent-green); font-weight: 800; letter-spacing: 1.5px;">Marketing estratégico</span>
+            </h2>
         </section>
     </main>
 
@@ -159,7 +219,7 @@
         <div class="footer-content">
             <img src="footer-logo.svg" alt="Tehuentec" class="footer-logo">
             <div class="footer-info">
-                Diseño web en Argentina <a href="https://tehuentec.com" target="_blank">tehuentec.com</a>
+                <a href="https://tehuentec.com" target="_blank">tehuentec.com</a>
             </div>
         </div>
     </footer>
@@ -185,12 +245,16 @@
                     <div class="dropdown-item" onclick="selectDropdownOption('Redes sociales')">Redes sociales</div>
                     <div class="dropdown-item" onclick="selectDropdownOption('Nuevo producto')">Nuevo producto</div>
                     <div class="dropdown-item" onclick="selectDropdownOption('Reclamos')">Reclamos</div>
+                    <div class="dropdown-item" onclick="selectDropdownOption('Otro')">Otro</div>
                 </div>
             </div>
 
             <form id="request-form" onsubmit="handleForm(event)">
                 <div style="margin-bottom: 15px;">
                     <input type="text" placeholder="TU NOMBRE" class="search-input" required>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="text" placeholder="EMPRESA" class="search-input" required>
                 </div>
                 <div style="margin-bottom: 15px;">
                     <input type="email" placeholder="EMAIL DE CONTACTO" class="search-input" required>
@@ -202,8 +266,8 @@
                 <div style="margin-bottom: 25px;">
                     <label class="file-upload-label">
                         <ion-icon name="cloud-upload-outline" style="font-size: 1.2rem;"></ion-icon>
-                        <span id="file-name-display">Adjuntar documento (Opcional)</span>
-                        <input type="file" id="file-upload" style="display: none;" onchange="updateFileName(this)">
+                        <span id="file-name-display">Adjuntar archivos (Opcional)</span>
+                        <input type="file" id="file-upload" style="display: none;" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.zip,.rar" onchange="updateFileName(this)">
                     </label>
                 </div>
                 <div class="disclaimer-box">
@@ -222,10 +286,45 @@
                 </div>
                 <h3 style="margin-bottom: 10px;">¡Solicitud Recibida!</h3>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">“Gracias por tu mensaje. Será derivado al sector correspondiente para una pronta respuesta. Tu satisfacción es nuestra prioridad.”</p>
-                <button class="btn btn-outline" style="margin-top: 25px;" onclick="closeModal()">Cerrar Ventana</button>
             </div>
         </div>
     </div>
+
+    <!-- Rating Modal -->
+    <div id="modal-rating" class="modal-overlay" onclick="closeRatingModalOnOutsideClick(event)">
+        <div class="card modal-card" style="text-align: center;">
+            <div class="close-modal" onclick="closeRatingModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <img src="componente-7.png" alt="Logo Tehuentec" class="rating-logo" style="width: 60px; height: auto; margin: 0 auto 20px; display: block;">
+            
+            <h3 style="margin-bottom: 10px; color: #FFF;">¿Cómo calificarías nuestro servicio?</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 25px;">Tu opinión nos ayuda a mejorar continuamente.</p>
+
+            <div class="star-rating" id="star-rating-container">
+                <ion-icon name="star-outline" data-value="1" onclick="selectRating(1)"></ion-icon>
+                <ion-icon name="star-outline" data-value="2" onclick="selectRating(2)"></ion-icon>
+                <ion-icon name="star-outline" data-value="3" onclick="selectRating(3)"></ion-icon>
+                <ion-icon name="star-outline" data-value="4" onclick="selectRating(4)"></ion-icon>
+                <ion-icon name="star-outline" data-value="5" onclick="selectRating(5)"></ion-icon>
+            </div>
+
+            <textarea id="rating-comments" placeholder="DÉJANOS UN COMENTARIO (OPCIONAL)..." class="search-input" style="min-height: 100px; resize: none; margin-top: 20px; display: none;"></textarea>
+
+            <button id="submit-rating-btn" class="btn btn-primary" style="justify-content: center; margin-top: 25px; opacity: 0.5; pointer-events: none;" onclick="submitRating()">
+                <span>Enviar Calificación</span>
+            </button>
+
+            <div id="rating-success" style="display: none; margin-top: 20px;">
+                <p style="color: var(--accent-green); font-weight: 600;">¡Gracias por tu feedback!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Rating Button -->
+    <button class="fab-rating" onclick="openRatingModal()" title="Calificar Servicio">
+        <img src="grupo-4809.png" alt="Calificar" style="width: 24px; height: auto;">
+    </button>
 
     <!-- App JS -->
     <script src="app.js"></script>
