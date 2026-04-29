@@ -769,7 +769,7 @@ body.modal-open {
     position: absolute;
     border-radius: 50%;
     filter: blur(100px);
-    opacity: 0.15;
+    opacity: 0.06; /* Reduced for mobile */
 }
 
 .glow-1 {
@@ -794,7 +794,7 @@ body.modal-open {
     background: var(--accent-orange);
     top: 40%;
     right: -100px;
-    opacity: 0.08; /* Even subtler for the secondary color */
+    opacity: 0.03; /* Subtler for mobile */
 }
 
 /* Disclaimer Box (Premium Alert Style) */
@@ -877,6 +877,12 @@ body.modal-open {
 }
 
 /* Desktop Overrides */
+body.view-desktop .bg-glow {
+    opacity: 0.15;
+}
+body.view-desktop .glow-3 {
+    opacity: 0.08;
+}
 body.view-desktop .container {
     max-width: 1100px;
     padding: 40px;
@@ -974,6 +980,63 @@ body.view-desktop .footer-branded {
 .fab-rating:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 15px 35px rgba(13, 204, 103, 0.5);
+}
+
+.fab-rating.inverted {
+    background: #FFFFFF;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+}
+
+.fab-rating.inverted img {
+    /* Convert black/dark image to var(--accent-green) -> #0DCC67 */
+    filter: brightness(0) saturate(100%) invert(56%) sepia(85%) saturate(1915%) hue-rotate(113deg) brightness(97%) contrast(98%);
+}
+
+.fab-rating.inverted:hover {
+    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.5);
+}
+
+/* FAB Dialogue Bubble */
+.fab-dialogue {
+    position: absolute;
+    right: calc(100% + 15px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: #FFFFFF;
+    color: #071119;
+    padding: 8px 16px;
+    border-radius: 14px 14px 0 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    pointer-events: none;
+    animation: gentle-bounce 3s infinite ease-in-out;
+}
+
+.fab-dialogue::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    bottom: 0;
+    border-width: 6px 0 0 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #FFFFFF;
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(-6px); }
+}
+
+/* Invert dialogue colors when FAB is on footer */
+.fab-rating.inverted .fab-dialogue {
+    background: var(--accent-green);
+    color: #071119;
+}
+
+.fab-rating.inverted .fab-dialogue::after {
+    border-color: transparent transparent transparent var(--accent-green);
 }
 
 @media (max-width: 600px) {

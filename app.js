@@ -2,38 +2,38 @@
 const faqData = [
     {
         id: 1,
-        category: 'campaÃ±as',
-        question: 'Â¿CÃ³mo puedo ver el rendimiento de mis anuncios?',
-        short: 'Consulta en tiempo real vÃ­a Admin Tehuentec.',
-        long: 'Para ver el rendimiento detallado, ingresa a admin.tehuentec.com. En la secciÃ³n "Reportes" encontrarÃ¡s grÃ¡ficos de Google Ads y Meta Ads con mÃ©tricas clave como CTR, CPC y Conversiones.'
+        category: 'campañas',
+        question: '¿Cómo puedo ver el rendimiento de mis anuncios?',
+        short: 'Consulta en tiempo real vía Admin Tehuentec.',
+        long: 'Para ver el rendimiento detallado, ingresa a admin.tehuentec.com. En la sección "Reportes" encontrarás gráficos de Google Ads y Meta Ads con métricas clave como CTR, CPC y Conversiones.'
     },
     {
         id: 2,
         category: 'facturacion',
-        question: 'Â¿DÃ³nde descargo mis facturas?',
-        short: 'En el panel central de AdministraciÃ³n.',
-        long: 'Todas tus facturas estÃ¡n centralizadas en el panel de AdministraciÃ³n. Si no tienes acceso habilitado, puedes solicitar el alta a travÃ©s del formulario de este mismo portal.'
+        question: '¿Dónde descargo mis facturas?',
+        short: 'En el panel central de Administración.',
+        long: 'Todas tus facturas están centralizadas en el panel de Administración. Si no tienes acceso habilitado, puedes solicitar el alta a través del formulario de este mismo portal.'
     },
     {
         id: 3,
-        category: 'diseÃ±o',
-        question: 'Â¿CÃ³mo solicito un cambio en la web?',
-        short: 'Inicia una gestiÃ³n de "Web Update".',
-        long: 'Selecciona "Web Update" en el formulario de inicio. Describe los cambios y nuestro equipo tÃ©cnico iniciarÃ¡ la gestiÃ³n en un plazo de 24 a 48hs hÃ¡biles.'
+        category: 'diseño',
+        question: '¿Cómo solicito un cambio en la web?',
+        short: 'Inicia una gestión de "Web Update".',
+        long: 'Selecciona "Web Update" en el formulario de inicio. Describe los cambios y nuestro equipo técnico iniciará la gestión en un plazo de 24 a 48hs hábiles.'
     },
     {
         id: 4,
         category: 'estrategia',
-        question: 'Â¿QuÃ© incluye el asesoramiento estratÃ©gico?',
-        short: 'OptimizaciÃ³n de ROI y anÃ¡lisis de mercado.',
-        long: 'Nuestro asesoramiento incluye revisiones mensuales de KPIs, optimizaciÃ³n de embudos de venta y ajustes estratÃ©gicos para maximizar el retorno de tu inversiÃ³n publicitaria.'
+        question: '¿Qué incluye el asesoramiento estratégico?',
+        short: 'Optimización de ROI y análisis de mercado.',
+        long: 'Nuestro asesoramiento incluye revisiones mensuales de KPIs, optimización de embudos de venta y ajustes estratégicos para maximizar el retorno de tu inversión publicitaria.'
     },
     {
         id: 5,
-        category: 'campaÃ±as',
-        question: 'Â¿CuÃ¡nto tardan en activarse los anuncios?',
-        short: 'Aproximadamente 48 horas hÃ¡biles.',
-        long: 'Una vez aprobada la pieza creativa y el presupuesto, las plataformas (Google/Meta) suelen tardar entre 24 y 48 horas en completar el proceso de revisiÃ³n y activaciÃ³n.'
+        category: 'campañas',
+        question: '¿Cuánto tardan en activarse los anuncios?',
+        short: 'Aproximadamente 48 horas hábiles.',
+        long: 'Una vez aprobada la pieza creativa y el presupuesto, las plataformas (Google/Meta) suelen tardar entre 24 y 48 horas en completar el proceso de revisión y activación.'
     }
 ];
 
@@ -232,7 +232,7 @@ document.addEventListener('click', (e) => {
 function handleForm(e) {
     e.preventDefault();
     if (!selectedOption) {
-        alert('Por favor, selecciona un tipo de gestiÃ³n.');
+        alert('Por favor, selecciona un tipo de gestión.');
         return;
     }
     
@@ -266,7 +266,7 @@ function resetForm() {
     document.getElementById('file-name-display').innerText = 'Adjuntar archivos (Opcional)';
     
     // Reset Dropdown
-    document.getElementById('selected-label').innerText = 'Motivo de GestiÃ³n';
+    document.getElementById('selected-label').innerText = 'Motivo de Gestión';
     document.getElementById('selected-label').style.color = 'var(--text-secondary)';
     selectedOption = null;
 }
@@ -496,6 +496,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 titleEl.style.transform = 'translateX(0)';
             }, 500);
         }, 3000);
+    }
+});
+
+// FAB Inversion Logic on Footer Overlap
+window.addEventListener('scroll', () => {
+    const footer = document.querySelector('.footer-branded');
+    const fab = document.querySelector('.fab-rating');
+    if (footer && fab) {
+        const footerRect = footer.getBoundingClientRect();
+        const fabRect = fab.getBoundingClientRect();
+        if (fabRect.bottom > footerRect.top) {
+            fab.classList.add('inverted');
+        } else {
+            fab.classList.remove('inverted');
+        }
     }
 });
 
