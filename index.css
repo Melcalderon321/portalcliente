@@ -468,6 +468,17 @@ input, textarea, select, button {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* Override browser autofill background */
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover,
+.search-input:-webkit-autofill:focus,
+.search-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #0e1e2e inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Floating Label */
 .float-label-group {
     position: relative;
