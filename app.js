@@ -219,6 +219,16 @@ function selectDropdownOption(val) {
     header.classList.remove('active');
 }
 
+// Urgent Toggle Logic
+function toggleUrgent(checkbox) {
+    const label = document.getElementById('urgent-label');
+    if (checkbox.checked) {
+        label.classList.add('active');
+    } else {
+        label.classList.remove('active');
+    }
+}
+
 // Close dropdown on outside click
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.custom-dropdown')) {
@@ -232,7 +242,7 @@ document.addEventListener('click', (e) => {
 function handleForm(e) {
     e.preventDefault();
     if (!selectedOption) {
-        alert('Por favor, selecciona un tipo de gestión.');
+        alert('Por favor, seleccioná un tipo de gestión.');
         return;
     }
     
@@ -251,10 +261,11 @@ function handleForm(e) {
 
     console.log('Tehuentec Submission:', {
         type: selectedOption,
-        user: e.target[0].value,
-        empresa: e.target[1].value,
-        email: e.target[2].value,
-        details: e.target[3].value,
+        user: document.getElementById('input-nombre').value,
+        empresa: document.getElementById('input-empresa').value,
+        email: document.getElementById('input-email').value,
+        urgent: document.getElementById('is-urgent').checked,
+        details: document.getElementById('input-detalle').value,
         attachment: fileName
     });
 }
@@ -265,6 +276,13 @@ function resetForm() {
     document.getElementById('success-message').style.display = 'none';
     document.getElementById('file-name-display').innerText = 'Adjuntar archivos (Opcional)';
     
+    // Reset Urgent
+    const urgentCheckbox = document.getElementById('is-urgent');
+    if (urgentCheckbox) {
+        urgentCheckbox.checked = false;
+        toggleUrgent(urgentCheckbox);
+    }
+
     // Reset Dropdown
     document.getElementById('selected-label').innerText = 'Motivo de Gestión';
     document.getElementById('selected-label').style.color = 'var(--text-secondary)';
@@ -513,4 +531,101 @@ window.addEventListener('scroll', () => {
         }
     }
 });
+
+
+// ===== ONBOARDING TOUR =====
+const tourSteps = [
+    { target: 'servicios-btn',      description: 'Conocé todos tus servicios contratados y accedé al panel de administración desde aquí.', position: 'bottom' },
+    { target: 'facturacion-btn',    description: 'Consultá tus facturas y el estado de cuenta de manera centralizada.', position: 'bottom' },
+    { target: 'nueva-gestion-btn', description: 'Generá consultas, solicitudes de cambios y reportes de manera rápida y autogestionada.', position: 'bottom' },
+    { target: 'recursos-btn-link', description: 'Tutoriales, guías y documentación que armamos especialmente para acompañarte.', position: 'bottom' },
+    { target: 'hours-btn',         description: 'Conocé nuestros horarios de soporte según el país en el que te encontrés.', position: 'bottom' },
+    { target: 'faqs-btn',          description: 'Encontrá respuestas a las preguntas más frecuentes de nuestros clientes.', position: 'bottom' },
+    { target: 'fab-btn',           description: 'Dejanos tu feedback para seguir mejorando. Tu opinión es muy importante para nosotros.', position: 'left' }
+];
+
+let tourCurrentStep = 0;
+
+function tourStart() {
+    if (localStorage.getItem('tht-tour-done') === '1') return;
+    tourCurrentStep = 0;
+    tourShowStep(tourCurrentStep);
+}
+
+let tourLastEl = null;
+
+function tourShowStep(index) {
+    const step = tourSteps[index];
+    const el = document.getElementById(step.target);
+    if (!el) { tourNext(); return; }
+    if (tourLastEl) { tourLastEl.style.position = ''; tourLastEl.style.zIndex = ''; }
+    tourLastEl = el;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+        const rect = el.getBoundingClientRect();
+        const pad = 8;
+        const hl = document.getElementById('tour-highlight');
+        hl.style.display = 'block';
+        hl.style.top    = (rect.top    - pad) + 'px';
+        hl.style.left   = (rect.left   - pad) + 'px';
+        hl.style.width  = (rect.width  + pad * 2) + 'px';
+        hl.style.height = (rect.height + pad * 2) + 'px';
+        const tt = document.getElementById('tour-tooltip');
+        tt.style.display = 'block';
+        document.getElementById('tour-step-count').textContent = 'Paso ' + (index + 1) + ' de ' + tourSteps.length;
+        document.getElementById('tour-desc').textContent  = step.description;
+        const prevBtn = document.getElementById('tour-prev'); if (prevBtn) prevBtn.style.display = index === 0 ? 'none' : 'block';
+        document.getElementById('tour-next').textContent   = index === tourSteps.length - 1 ? 'Finalizar 🎉' : 'Siguiente →';
+        const ttW = 300, ttH = 140;
+        const vw = window.innerWidth, vh = window.innerHeight;
+        let top, left;
+        if (step.position === 'bottom') {
+            top  = rect.bottom + pad + 12;
+            left = rect.left + rect.width / 2 - ttW / 2;
+        } else if (step.position === 'top') {
+            top  = rect.top - ttH - pad - 12;
+            left = rect.left + rect.width / 2 - ttW / 2;
+        } else {
+            top  = rect.top + rect.height / 2 - ttH / 2;
+            left = rect.left - ttW - pad - 12;
+        }
+        left = Math.max(12, Math.min(left, vw - ttW - 12));
+        top  = Math.max(12, Math.min(top,  vh - ttH - 12));
+        tt.style.top  = top  + 'px';
+        tt.style.left = left + 'px';
+    }, 350);
+}
+
+function tourNext() {
+    if (tourCurrentStep < tourSteps.length - 1) {
+        tourCurrentStep++;
+        tourShowStep(tourCurrentStep);
+    } else {
+        tourEnd();
+    }
+}
+
+function tourPrev() {
+    if (tourCurrentStep > 0) {
+        tourCurrentStep--;
+        tourShowStep(tourCurrentStep);
+    }
+}
+
+function tourSkip() { tourEnd(); }
+
+function tourEnd() {
+    document.getElementById('tour-overlay').style.display   = 'none';
+    document.getElementById('tour-highlight').style.display = 'none';
+    document.getElementById('tour-tooltip').style.display   = 'none';
+    localStorage.setItem('tht-tour-done', '1');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(tourStart, 800);
+});
+
+
+
+
 

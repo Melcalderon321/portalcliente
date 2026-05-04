@@ -28,12 +28,16 @@
         </button>
     </div>
 
+    <button class="tour-restart-btn" onclick="localStorage.removeItem('tht-tour-done'); tourStart();" title="Iniciar tour">
+        <ion-icon name="map-outline"></ion-icon>
+    </button>
+
     <header class="header">
-        <img src="top-logo.png" alt="Tehuentec Logo" class="logo">
     </header>
 
     <div class="user-profile">
         <div class="user-info">
+            <img src="tehuentec-footer.png" alt="Tehuentec" style="width: 150px; height: auto; margin: 0 auto 15px auto; display: block;">
             <h1>¡Hola! Bienvenido.</h1>
             <p>Desde nuestro Portal del Cliente podés gestionar todos tus servicios en un solo lugar, generar nuevas solicitudes de soporte o cambios y acceder rápidamente a recursos exclusivos de Tehuentec.</p>
         </div>
@@ -47,7 +51,7 @@
         <section style="margin-bottom: 30px;">
             <div class="app-grid">
                 <!-- 1. Servicios -->
-                <a href="https://admin.tehuentec.com" target="_blank" class="app-card">
+                <a href="https://admin.tehuentec.com" target="_blank" class="app-card" id="servicios-btn">
                     <div class="app-icon-box" style="color: var(--accent-green);">
                         <ion-icon name="briefcase-outline"></ion-icon>
                     </div>
@@ -63,7 +67,7 @@
                 </button>
 
                 <!-- 3. Nueva Gestión -->
-                <button class="app-card orange-hover" onclick="openModal()">
+                <button class="app-card orange-hover" id="nueva-gestion-btn" onclick="openModal()">
                     <div class="app-icon-box" style="color: var(--accent-orange); background: rgba(250, 84, 50, 0.1);">
                         <ion-icon name="add-circle-outline"></ion-icon>
                     </div>
@@ -71,7 +75,7 @@
                 </button>
 
                 <!-- 4. Recursos -->
-                <a href="recursos.html" class="app-card">
+                <a href="recursos.html" class="app-card" id="recursos-btn-link">
                     <div class="app-icon-box" style="color: #FFF;">
                         <ion-icon name="library-outline"></ion-icon>
                     </div>
@@ -87,11 +91,11 @@
                 </button>
 
                 <!-- 6. Centro de Ayuda -->
-                <a href="#faq-section" class="app-card" onclick="document.getElementById('faq-section').scrollIntoView({behavior: 'smooth'})">
+                <a href="#faq-section" class="app-card" id="faqs-btn" onclick="document.getElementById('faq-section').scrollIntoView({behavior: 'smooth'})">
                     <div class="app-icon-box" style="color: #FFF;">
                         <ion-icon name="help-circle-outline"></ion-icon>
                     </div>
-                    <span>Ayuda (FAQ)</span>
+                    <span>Ayuda (FAQs)</span>
                 </a>
             </div>
 
@@ -162,42 +166,14 @@
             </div>
         </section>
 
-        <!-- Dynamic Ticker Promotion -->
-        <div class="card" style="background: var(--brand-gradient); border: none; overflow: hidden; position: relative; padding: 30px;">
+        <!-- Green Brand Banner -->
+        <div class="card" style="background: linear-gradient(135deg, #0a3d22 0%, #0dcc67 100%); border: none; overflow: hidden; position: relative; padding: 30px;">
+            <img src="enmascarar-grupo-11.png" alt="" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 160%; opacity: 0.7; mix-blend-mode: screen; pointer-events: none; z-index: 0;">
             <div style="position: relative; z-index: 1;">
-                <h3 style="color: white; font-size: 1.4rem; line-height: 1.2; margin-bottom: 10px;">Potenciemos los resultados de tu negocio</h3>
-                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Sigamos creciendo juntos, generando nuevas oportunidades</p>
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); display: block; margin-bottom: 8px;">Tehuentec &middot; 20 a&ntilde;os</span>
+                <h3 style="color: white; font-size: 1.3rem; line-height: 1.25; margin-bottom: 8px; font-weight: 800;">Acceso total a tus activos en cualquier momento.</h3>
+                <p style="color: rgba(255,255,255,0.75); font-size: 0.85rem; line-height: 1.5;">La trazabilidad de tu negocio en tiempo real.</p>
             </div>
-            <svg id="recurso-bg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 41.09 93.09" style="position: absolute; right: 40px; bottom: 5px; height: 140px; opacity: 0.15;">
-                <defs>
-                    <style>
-                    .bg-icon-cls-1 { opacity: .3; }
-                    .bg-icon-cls-2 { fill: none; }
-                    .bg-icon-cls-3 { clip-path: url(#bg-icon-clippath-1); }
-                    .bg-icon-cls-4 { opacity: .7; }
-                    .bg-icon-cls-5 { fill: #ffffff; }
-                    .bg-icon-cls-6 { clip-path: url(#bg-icon-clippath); }
-                    </style>
-                    <clipPath id="bg-icon-clippath">
-                    <rect class="bg-icon-cls-2" x="16.21" width="24.88" height="93.09"/>
-                    </clipPath>
-                    <clipPath id="bg-icon-clippath-1">
-                    <rect class="bg-icon-cls-2" y="13.92" width="19.22" height="65.18"/>
-                    </clipPath>
-                </defs>
-                <g>
-                    <g class="bg-icon-cls-1">
-                        <g class="bg-icon-cls-6">
-                            <path class="bg-icon-cls-5" d="M17.88,91.48c-1.62-1.63-1.71-4.23-.2-5.95,19.22-22.36,19.05-55.61-.38-78.01-1.51-1.72-1.43-4.31.16-5.93l.32-.32c1.67-1.7,4.41-1.7,6.1-.01.07.07.13.13.19.21,22.54,25.87,22.71,64.36.4,90.16-1.57,1.79-4.3,1.95-6.08.36-.07-.06-.13-.12-.2-.19l-.31-.32Z"/>
-                        </g>
-                    </g>
-                    <g class="bg-icon-cls-4">
-                        <g class="bg-icon-cls-3">
-                            <path class="bg-icon-cls-5" d="M1.93,77.57c-1.6-1.53-1.79-4.03-.43-5.77,11.66-14.75,11.47-35.72-.46-50.4-1.46-1.74-1.38-4.29.2-5.9l.3-.31c1.7-1.7,4.45-1.68,6.15.04.1.1.2.21.3.33,14.7,17.98,14.99,43.74.7,61.88-1.48,1.9-4.21,2.23-6.11.74-.12-.09-.22-.19-.33-.29l-.31-.31Z"/>
-                        </g>
-                    </g>
-                </g>
-            </svg>
         </div>
 
         <!-- Section: FAQ -->
@@ -218,7 +194,14 @@
             </div>
         </section>
 
-
+        <!-- Dynamic Ticker Promotion -->
+        <div class="card" style="background: var(--brand-gradient); border: none; overflow: hidden; position: relative; padding: 30px;">
+            <img src="enmascarar-grupo-11.png" alt="" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 160%; opacity: 0.7; mix-blend-mode: screen; pointer-events: none; z-index: 0;">
+            <div style="position: relative; z-index: 1;">
+                <h3 style="color: white; font-size: 1.3rem; line-height: 1.2; margin-bottom: 10px;">Potenciemos los resultados de tu negocio</h3>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.85rem;">Sigamos creciendo juntos, generando nuevas oportunidades</p>
+            </div>
+        </div>
 
         <!-- Section: Call (Hideable) -->
         <div id="call-card" class="card" style="background: rgba(255, 87, 51, 0.05); border-color: rgba(255, 87, 51, 0.2);">
@@ -228,15 +211,17 @@
                     <p style="font-size: 0.8rem; color: var(--text-secondary);">Agendá una breve reunión con nuestro equipo de asesores.</p>
                 </div>
             </div>
-            <button class="btn btn-primary" onclick="window.location.href='https://calendly.com/tehuentec'">
-                <span>Ver Disponibilidad</span>
+            <button class="btn btn-primary" id="ver-disponibilidad-btn" onclick="window.location.href='https://calendly.com/tehuentec'">
+                <span>Ver disponibilidad</span>
                 <ion-icon name="calendar-number-outline"></ion-icon>
             </button>
         </div>
 
 
         <!-- Section: Closing / Partner -->
-        <section class="pills-container animate-fade" style="padding: 10px 0 0 0; text-align: center;">
+        <section class="pills-container animate-fade" style="padding: 10px 0 0 0; text-align: center; position: relative; overflow: hidden; background-image: url('enmascarar-grupo-11.png'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+            <div style="position: absolute; inset: 0; background: rgba(7,17,25,0.65); z-index: 0;"></div>
+            <div style="position: relative; z-index: 1;">
             <style>
                 @keyframes float-logo {
                     0% { transform: translateY(0px); }
@@ -251,40 +236,11 @@
                     animation: float-logo 3s ease-in-out infinite;
                 }
             </style>
-            <svg class="floating-small-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 79.12 65.31">
-              <defs>
-                <style>
-                  .sl-cls-1 { opacity: .3; }
-                  .sl-cls-2 { fill: none; }
-                  .sl-cls-3 { clip-path: url(#sl-clippath-1); }
-                  .sl-cls-4 { opacity: .7; }
-                  .sl-cls-5 { fill: #0dcc67; }
-                  .sl-cls-6 { clip-path: url(#sl-clippath); }
-                </style>
-                <clipPath id="sl-clippath">
-                  <rect class="sl-cls-2" x="2.79" y="19.1" width="56.22" height="44.83"/>
-                </clipPath>
-                <clipPath id="sl-clippath-1">
-                  <rect class="sl-cls-2" width="79.12" height="62.97"/>
-                </clipPath>
-              </defs>
-              <g>
-                <g class="sl-cls-4">
-                  <g class="sl-cls-6">
-                    <path class="sl-cls-5" d="M54.65,63.88c-2.29.34-4.48-1.1-5.05-3.34-4.72-19.09-22.18-32.38-41.96-31.93-2.37.09-4.43-1.61-4.75-3.95l-.06-.45c-.31-2.49,1.47-4.75,3.97-5.06.15-.02.31-.03.46-.03,24.29-.63,45.78,15.65,51.61,39.08.63,2.44-.86,4.91-3.31,5.53-.15.04-.3.07-.46.09l-.45.06Z"/>
-                  </g>
-                </g>
-                <path class="sl-cls-5" d="M36.82,65.26c-1.41.25-2.78-.6-3.16-1.97-3.22-11.67-14.19-19.55-26.36-18.94-1.46.1-2.75-.92-2.99-2.35l-.05-.28c-.23-1.53.82-2.95,2.36-3.18.09-.02.19-.02.28-.03,14.94-.8,28.43,8.86,32.42,23.18.43,1.49-.44,3.04-1.94,3.46-.09.03-.18.04-.28.06l-.28.05Z"/>
-                <g class="sl-cls-1">
-                  <g class="sl-cls-3">
-                    <path class="sl-cls-5" d="M74.69,62.94c-2.39.3-4.59-1.3-5.05-3.64C63.47,29.07,35.88,7.89,4.9,9.6c-2.39.14-4.49-1.58-4.8-3.94l-.06-.47C-.29,2.73,1.46.47,3.94.15c.1-.01.19-.02.29-.03C40.07-1.93,72.01,22.6,79.04,57.58c.47,2.44-1.14,4.8-3.6,5.26-.09.02-.19.03-.28.04l-.46.05Z"/>
-                  </g>
-                </g>
-              </g>
-            </svg>
+            <img src="componente-7-1.png" alt="Tehuentec" class="floating-small-logo">
             <h2 class="pills-title" style="margin-bottom: 0; min-height: 40px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                <span id="rotating-title" style="transition: all 0.5s ease; opacity: 1; transform: translateX(0); display: inline-block; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.5px var(--accent-green); font-weight: 800; letter-spacing: 1.5px;">Marketing estratégico</span>
+                <span id="rotating-title" style="transition: all 0.5s ease; opacity: 1; transform: translateX(0); display: inline-block; text-transform: uppercase; color: var(--accent-green); -webkit-text-fill-color: var(--accent-green); font-weight: 800; letter-spacing: 1.5px;">Marketing estratégico</span>
             </h2>
+            </div>
         </section>
     </main>
 
@@ -292,7 +248,7 @@
         <div class="footer-content">
             <img src="footer-logo.svg" alt="Tehuentec" class="footer-logo">
             <div class="footer-info">
-                <a href="https://tehuentec.com" target="_blank">tehuentec.com</a>
+                <p>Diseño y desarrollo web realizado por <a href="https://tehuentec.com" target="_blank">Tehuentec</a> by THT Corporation</p>
             </div>
         </div>
     </footer>
@@ -323,17 +279,21 @@
             </div>
 
             <form id="request-form" onsubmit="handleForm(event)">
-                <div style="margin-bottom: 15px;">
-                    <input type="text" placeholder="TU NOMBRE" class="search-input" required>
+                <div class="float-label-group">
+                    <input type="text" id="input-nombre" placeholder=" " class="search-input float-input" required>
+                    <label for="input-nombre" class="float-label">Tu nombre</label>
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <input type="text" placeholder="EMPRESA" class="search-input" required>
+                <div class="float-label-group">
+                    <input type="text" id="input-empresa" placeholder=" " class="search-input float-input" required>
+                    <label for="input-empresa" class="float-label">Empresa</label>
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <input type="email" placeholder="EMAIL DE CONTACTO" class="search-input" required>
+                <div class="float-label-group">
+                    <input type="email" id="input-email" placeholder=" " class="search-input float-input" required>
+                    <label for="input-email" class="float-label">Email de contacto</label>
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <textarea placeholder="DETALLE DE TU SOLICITUD..." class="search-input" style="min-height: 120px; resize: vertical;" required></textarea>
+                <div class="float-label-group">
+                    <textarea id="input-detalle" placeholder=" " class="search-input float-input float-textarea" required></textarea>
+                    <label for="input-detalle" class="float-label">Detalle de tu solicitud...</label>
                 </div>
                 
                 <div style="margin-bottom: 25px;">
@@ -343,13 +303,22 @@
                         <input type="file" id="file-upload" style="display: none;" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.zip,.rar" onchange="updateFileName(this)">
                     </label>
                 </div>
+
+                <label class="urgent-selection" id="urgent-label">
+                    <input type="checkbox" id="is-urgent" onchange="toggleUrgent(this)">
+                    <div class="check-circle">
+                        <ion-icon name="checkmark-sharp"></ion-icon>
+                    </div>
+                    <ion-icon name="flame"></ion-icon>
+                    <span>Pedido urgente</span>
+                </label>
                 <div class="disclaimer-box">
                     <ion-icon name="alert-circle" class="disclaimer-icon"></ion-icon> 
                     <span class="disclaimer-text">El email es el principal canal para respuestas urgentes.</span>
                 </div>
 
                 <button type="submit" class="btn btn-green" style="justify-content: center;">
-                    <span>Enviar Solicitud</span>
+                    <span>Enviar solicitud</span>
                 </button>
             </form>
 
@@ -358,7 +327,10 @@
                     <ion-icon name="checkmark-done-outline" style="font-size: 2.5rem;"></ion-icon>
                 </div>
                 <h3 style="margin-bottom: 10px;">¡Solicitud Recibida!</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">“Gracias por tu mensaje. Será derivado al sector correspondiente para una pronta respuesta. Tu satisfacción es nuestra prioridad.”</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                    Gracias por tu mensaje. Tu consulta fue enviada correctamente y será derivada al sector correspondiente.<br>
+                    Recibirás una respuesta dentro de las próximas 24 a 48 horas hábiles.
+                </p>
             </div>
         </div>
     </div>
@@ -382,10 +354,10 @@
                 <ion-icon name="star-outline" data-value="5" onclick="selectRating(5)"></ion-icon>
             </div>
 
-            <textarea id="rating-comments" placeholder="DÉJANOS UN COMENTARIO (OPCIONAL)..." class="search-input" style="min-height: 100px; resize: none; margin-top: 20px; display: none;"></textarea>
+            <textarea id="rating-comments" placeholder="Déjanos un comentario (opcional)..." class="search-input" style="min-height: 100px; resize: none; margin-top: 20px; display: none;"></textarea>
 
             <button id="submit-rating-btn" class="btn btn-primary" style="justify-content: center; margin-top: 25px; opacity: 0.5; pointer-events: none;" onclick="submitRating()">
-                <span>Enviar Calificación</span>
+                <span>Enviar calificación</span>
             </button>
 
             <div id="rating-success" style="display: none; margin-top: 20px;">
@@ -395,9 +367,21 @@
     </div>
 
     <!-- Floating Rating Button -->
-    <button class="fab-rating" onclick="openRatingModal()" title="Calificar Servicio">
+    <button class="fab-rating" id="fab-btn" onclick="openRatingModal()" title="Calificar Servicio">
         <img src="grupo-4809.png" alt="Calificar" style="width: 24px; height: auto;">
     </button>
+
+    <!-- Onboarding Tour -->
+    <div id="tour-overlay" style="display:none;"></div>
+    <div id="tour-highlight" style="display:none;"></div>
+    <div id="tour-tooltip" style="display:none;">
+        <p id="tour-step-count"></p>
+        <p id="tour-desc"></p>
+        <div class="tour-actions">
+            <button id="tour-skip" onclick="tourSkip()">Saltar</button>
+            <button id="tour-next" onclick="tourNext()">Siguiente →</button>
+        </div>
+    </div>
 
     <!-- App JS -->
     <script src="app.js"></script>
