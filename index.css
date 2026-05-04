@@ -800,6 +800,9 @@ body.modal-open {
     text-align: center;
     position: relative;
     overflow: hidden;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
 .pills-title {
