@@ -219,8 +219,9 @@
 
 
         <!-- Section: Closing / Partner -->
-        <section class="pills-container animate-fade" style="padding: 10px 0 0 0; text-align: center; position: relative; overflow: hidden; background-image: url('enmascarar-grupo-11.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; border: none; box-shadow: none; border-radius: 0;">
-            <div style="position: absolute; inset: 0; background: rgba(7,17,25,0.65); z-index: 0;"></div>
+        <section class="pills-container animate-fade" style="padding: 10px 0 0 0; text-align: center; position: relative; overflow: hidden; border: none; box-shadow: none; border-radius: 0; background: transparent;">
+
+
             <div style="position: relative; z-index: 1;">
             <style>
                 @keyframes float-logo {
@@ -234,11 +235,12 @@
                     margin: 0 auto 10px auto;
                     display: block;
                     animation: float-logo 3s ease-in-out infinite;
+                    filter: brightness(0) invert(1);
                 }
             </style>
-            <img src="componente-7-1.png" alt="Tehuentec" class="floating-small-logo">
+            <img src="iso.png" alt="Tehuentec" class="floating-small-logo">
             <h2 class="pills-title" style="margin-bottom: 0; min-height: 40px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                <span id="rotating-title" style="transition: all 0.5s ease; opacity: 1; transform: translateX(0); display: inline-block; text-transform: uppercase; color: var(--accent-green); -webkit-text-fill-color: var(--accent-green); font-weight: 800; letter-spacing: 1.5px;">Marketing estratégico</span>
+                <span id="rotating-title" style="transition: all 0.5s ease; opacity: 1; transform: translateX(0); display: inline-block; text-transform: uppercase; color: #FFFFFF; -webkit-text-fill-color: #FFFFFF; font-weight: 800; letter-spacing: 1.5px;">Marketing estratégico</span>
             </h2>
             </div>
         </section>
@@ -341,7 +343,7 @@
             <div class="close-modal" onclick="closeRatingModal()">
                 <ion-icon name="close-outline"></ion-icon>
             </div>
-            <img src="componente-7.png" alt="Logo Tehuentec" class="rating-logo" style="width: 60px; height: auto; margin: 0 auto 20px; display: block;">
+            <img src="iso.png" alt="Logo Tehuentec" class="rating-logo" style="width: 60px; height: auto; margin: 0 auto 20px; display: block;">
             
             <h3 style="margin-bottom: 10px; color: #FFF;">¿Cómo calificarías nuestro servicio?</h3>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 25px;">Tu opinión nos ayuda a mejorar continuamente.</p>
@@ -368,6 +370,16 @@
 
     <!-- Floating Rating Button -->
     <button class="fab-rating" id="fab-btn" onclick="openRatingModal()" title="Calificar Servicio">
+        <div class="fab-tooltip">
+            <div class="fab-stars">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+            </div>
+            <span>Calificar servicio</span>
+        </div>
         <img src="grupo-4809.png" alt="Calificar" style="width: 24px; height: auto;">
     </button>
 
@@ -375,7 +387,7 @@
     <div id="tour-overlay" style="display:none;"></div>
     <div id="tour-highlight" style="display:none;"></div>
     <div id="tour-tooltip" style="display:none;">
-        <p id="tour-step-count"></p>
+
         <p id="tour-desc"></p>
         <div class="tour-actions">
             <button id="tour-skip" onclick="tourSkip()">Saltar</button>

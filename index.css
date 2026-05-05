@@ -95,7 +95,7 @@ input, textarea, select, button {
 .logo {
     width: 120px;
     margin-bottom: 0;
-    filter: drop-shadow(0 0 10px rgba(13, 204, 103, 0.2));
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
 /* Ticker / Marquee */
@@ -942,14 +942,7 @@ body.modal-open {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#tour-step-count {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--accent-green);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 8px;
-}
+
 
 #tour-title {
     font-size: 1rem;
@@ -996,7 +989,7 @@ body.modal-open {
     font-family: 'Inter', sans-serif;
     transition: all 0.2s ease;
     background: var(--accent-green);
-    color: #071119;
+    color: #FFFFFF;
 }
 
 #tour-next:hover { background: #0fb558; transform: translateY(-1px); }
@@ -1245,28 +1238,44 @@ body.view-desktop .footer-branded {
     transition: var(--transition);
 }
 
-.fab-rating::before {
-    content: 'Calificar servicio';
+.fab-tooltip {
     position: absolute;
     right: calc(100% + 12px);
     bottom: 50%;
     transform: translateY(50%);
-    background: rgba(15, 25, 35, 0.95);
+    background: rgba(12, 22, 35, 0.98);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 8px;
+    padding: 10px 14px;
+    border-radius: 12px;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease;
-    border: 1px solid rgba(255,255,255,0.08);
-    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.fab-rating:hover::before {
+.fab-rating:hover .fab-tooltip {
     opacity: 1;
+    transform: translateY(50%) translateX(-5px);
+}
+
+.fab-stars {
+    display: flex;
+    gap: 2px;
+    color: #FFD700;
+    font-size: 0.85rem;
+}
+
+.fab-tooltip span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
 .fab-rating:hover {
@@ -1321,7 +1330,7 @@ body.view-desktop .footer-branded {
 /* Rating Logo Animation */
 .rating-logo {
     animation: floatLogo 3s ease-in-out infinite;
-    filter: drop-shadow(0 5px 15px rgba(13, 204, 103, 0.3));
+    filter: brightness(0) invert(1) drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
 }
 
 @keyframes floatLogo {

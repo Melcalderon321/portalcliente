@@ -572,7 +572,7 @@ function tourShowStep(index) {
         hl.style.height = (rect.height + pad * 2) + 'px';
         const tt = document.getElementById('tour-tooltip');
         tt.style.display = 'block';
-        document.getElementById('tour-step-count').textContent = 'Paso ' + (index + 1) + ' de ' + tourSteps.length;
+
         document.getElementById('tour-desc').textContent  = step.description;
         const prevBtn = document.getElementById('tour-prev'); if (prevBtn) prevBtn.style.display = index === 0 ? 'none' : 'block';
         document.getElementById('tour-next').textContent   = index === tourSteps.length - 1 ? 'Finalizar 🎉' : 'Siguiente →';
